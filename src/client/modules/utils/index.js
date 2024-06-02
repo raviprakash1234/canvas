@@ -31,7 +31,11 @@ export const loadSVGFromString = (svgString, callBack) => {
   });
 };
 
-export const addSVGFromURL = (url, canvas, onCompleteCallback) => {
+// export const animateObject = (obj, callBack) => {
+//   callBack(obj);
+// };
+
+export const addSVGFromURL = (url, canvas, onCompleteCallback, isAnimate) => {
   fabric.Object.prototype.transparentCorners = false;
   fabric.Object.prototype.objectCaching = false;
   const minScale = 1;
@@ -159,9 +163,15 @@ export const createCanvasGroup = (group) => {
 };
 
 export const setBackgroundImage = (imgLink, callBack) => {
-  fabric.Image.fromURL(imgLink, (img, isError) => {
-    callBack(img);
-  });
+  fabric.Image.fromURL(
+    imgLink,
+    (img, isError) => {
+      callBack(img);
+    },
+    {
+      crossOrigin: "anonymous",
+    }
+  );
 };
 
 export const applyFilterOnImage = (value = {}, type) => {

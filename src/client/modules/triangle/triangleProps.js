@@ -14,6 +14,7 @@ const TriangleProps = ({
           type="checkbox"
           name="lockRotation"
           onChange={(evt) => handleChange(evt, "triangleProps", "checkbox")}
+          checked={triangleProps.lockRotation}
         />
         <label>Lock Rotation</label>
       </div>
@@ -24,6 +25,7 @@ const TriangleProps = ({
           type="checkbox"
           name="lockMovementX"
           onChange={(evt) => handleChange(evt, "triangleProps", "checkbox")}
+          checked={triangleProps.lockMovementX}
         />
         <label>Lock Movement X</label>
       </div>
@@ -34,6 +36,7 @@ const TriangleProps = ({
           type="checkbox"
           name="lockMovementY"
           onChange={(evt) => handleChange(evt, "triangleProps", "checkbox")}
+          checked={triangleProps.lockMovementY}
         />
         <label>Lock Movement Y</label>
       </div>
@@ -44,6 +47,7 @@ const TriangleProps = ({
           value={triangleProps.dirty}
           name="dirty"
           onChange={(evt) => handleChange(evt, "triangleProps", "checkbox")}
+          checked={triangleProps.dirty}
         />
         <label>Dirty</label>
       </div>

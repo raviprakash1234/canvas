@@ -18,8 +18,20 @@ const TextboxProps = ({
           name="underline"
           onChange={(evt) => handleChange(evt, "textBoxProps", "checkbox")}
           type="checkbox"
+          checked={textBoxProps.underline}
         />
         <label>Underlined</label>
+      </div>
+      <div style={{ marginTop: "12px" }}>
+        <input
+          style={{ marginRight: "12px" }}
+          value={textBoxProps.italic}
+          name="italic"
+          onChange={(evt) => handleChange(evt, "textBoxProps", "checkbox")}
+          type="checkbox"
+          checked={textBoxProps.italic}
+        />
+        <label>Italic</label>
       </div>
       <div style={{ marginTop: "12px" }}>
         <input
@@ -28,6 +40,7 @@ const TextboxProps = ({
           name="overline"
           onChange={(evt) => handleChange(evt, "textBoxProps", "checkbox")}
           type="checkbox"
+          checked={textBoxProps.overline}
         />
         <label>Overline</label>
       </div>
@@ -38,6 +51,7 @@ const TextboxProps = ({
           name="bold"
           onChange={(evt) => handleChange(evt, "textBoxProps", "checkbox")}
           type="checkbox"
+          checked={textBoxProps.bold}
         />
         <label>Bold</label>
       </div>
@@ -48,6 +62,7 @@ const TextboxProps = ({
           name="linethrough"
           onChange={(evt) => handleChange(evt, "textBoxProps", "checkbox")}
           type="checkbox"
+          checked={textBoxProps.linethrough}
         />
         <label>Line through</label>
       </div>
@@ -59,6 +74,7 @@ const TextboxProps = ({
           type="checkbox"
           name="lockRotation"
           onChange={(evt) => handleChange(evt, "textBoxProps", "checkbox")}
+          checked={textBoxProps.lockRotation}
         />
         <label>Lock Rotation</label>
       </div>
@@ -69,6 +85,7 @@ const TextboxProps = ({
           value={textBoxProps.lockMovementX}
           name="lockMovementX"
           onChange={(evt) => handleChange(evt, "textBoxProps", "checkbox")}
+          checked={textBoxProps.lockMovementX}
         />
         <label>Lock Movement X</label>
       </div>
@@ -79,6 +96,7 @@ const TextboxProps = ({
           value={textBoxProps.lockMovementY}
           name="lockMovementY"
           onChange={(evt) => handleChange(evt, "textBoxProps", "checkbox")}
+          checked={textBoxProps.lockMovementY}
         />
         <label>Lock Movement Y</label>
       </div>
@@ -90,6 +108,7 @@ const TextboxProps = ({
           onChange={(evt) => handleChange(evt, "textBoxProps", "checkbox")}
           type="text"
           name="fontSize"
+          checked={textBoxProps.fontSize}
         />
         <button onClick={() => handleIncreaseFontSize()}>+</button>
         <label>Font Size</label>
@@ -102,6 +121,7 @@ const TextboxProps = ({
           onChange={(evt) => handleChange(evt, "textBoxProps", "checkbox")}
           type="text"
           name="charSpacing"
+          checked={textBoxProps.charSpacing}
         />
         <button onClick={() => handleIncreaseCharSpace()}>+</button>
         <label>Character Space</label>

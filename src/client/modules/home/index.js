@@ -7,10 +7,11 @@ import {
   eraser,
   loadSVGFromString,
   prepareCrop,
-  setBackgroundImage,
 } from "../utils";
+import services from "../upload-image/service";
 
 const defaultState = {
+  image: [],
   text: [],
   canvas: null,
   isActiveObject: null,
@@ -25,6 +26,8 @@ const defaultState = {
   isDrawingMode: false,
   isCopyObj: false,
   isOpen: false,
+  isAnimate: false,
+  isDialogOpen: false,
   canvasDrawing: {
     mode: "Pencil",
     lineWidth: "2",
@@ -36,6 +39,7 @@ const defaultState = {
     fontSize: 32,
     bold: false,
     overline: false,
+    italic: false,
     linethrough: false,
     textBackgroundColor: "#fff",
     lockRotation: false,
@@ -165,21 +169,9 @@ const Home = () => {
       width: 800,
       height: 600,
       backgroundColor: state.canvasBackgroundColor,
-      imageSmoothingEnabled: true,
-      isDrawingMode: state.isDrawingMode,
-    });
-
-    const brush = drawingBrush(state.canvasDrawing.mode, newCanvas);
-    brush.width = state.canvasDrawing.lineWidth || 2;
-    brush.color = state.canvasDrawing.lineColor;
-    newCanvas.freeDrawingBrush = brush;
-
-    newCanvas.on("path:created", (options) => {
-      const path = options.path;
-      setState((prevState) => ({
-        ...prevState,
-        drawnObject: path,
-      }));
+      // imageSmoothingEnabled: true,
+      // perPixelTargetFind: true,
+      // targetFindTolerance: 5,
     });
 
     setState((prevState) => ({
@@ -208,20 +200,12 @@ const Home = () => {
       }));
     });
 
-    // newCanvas.on("object:modified", updatedCanvasState);
     newCanvas.on("object:added", updatedCanvasState);
 
     return () => {
       newCanvas.dispose();
     };
-  }, [state.isDrawingMode, state.canvasDrawing, state.canvasBackgroundColor]);
-
-  useEffect(() => {
-    if (Object.keys(state.drawnObject).length !== 0) {
-      state.canvas?.add(state.drawnObject);
-      state.canvas?.renderAll();
-    }
-  }, [state.isDrawingMode]);
+  }, [state.canvasDrawing, state.canvasBackgroundColor]);
 
   const updatedCanvasState = (e) => {
     const object = e.target;
@@ -234,7 +218,7 @@ const Home = () => {
   const handleUndo = (canvasHistory) => {
     if (canvasHistory.length > 0) {
       state.canvas.clear();
-      console.log("canvasHistory", canvasHistory);
+      // console.log("canvasHistory", canvasHistory);
       canvasHistory.pop();
       var prevState = JSON.parse(canvasHistory[canvasHistory.length - 1]);
       state.canvas.loadFromJSON(
@@ -332,10 +316,15 @@ const Home = () => {
     document.body.removeChild(downloadLink);
   };
 
-  const handleDrawingMode = () => {
+  const handleDrawingMode = (value) => {
+    state.canvas.isDrawingMode = value;
+    const brush = drawingBrush(state.canvasDrawing.mode, state.canvas);
+    brush.width = state.canvasDrawing.lineWidth || 2;
+    brush.color = state.canvasDrawing.lineColor;
+    state.canvas.freeDrawingBrush = brush;
     setState((prevState) => ({
       ...prevState,
-      isDrawingMode: prevState.isDrawingMode ? false : true,
+      isDrawingMode: value,
     }));
   };
 
@@ -343,9 +332,13 @@ const Home = () => {
     state.canvas.isDrawingMode = value;
     setState((prevState) => ({
       ...prevState,
-      isOpen: value,
+      isDrawingMode: value,
     }));
   };
+
+  // useEffect(() => {
+  //    handleDrawingMode(true);
+  // }, [state.isDrawingMode]);
 
   const handleLoadSvgChange = (evt) => {
     const { name, value } = evt.target;
@@ -413,7 +406,6 @@ const Home = () => {
       currentTab: tab,
       isDrawingMode: false,
     }));
-    // state.canvas.isDrawingMode = false;
   };
 
   const handleClearCanvas = () => {
@@ -425,26 +417,25 @@ const Home = () => {
   };
 
   const handleSetBackgroundImage = () => {
-    setBackgroundImage(
-      "http://fabricjs.com/assets/honey_im_subtle.png",
-      (img) => {
-        img.set({
-          opacity: 0.5,
-          angle: 45,
-          left: 400,
-          top: 400,
-          originX: "left",
-          originY: "top",
-          crossOrigin: "anonymous",
-          scaleX: state.canvas.width / img.width,
-          scaleY: state.canvas.height / img.height,
-        });
-        state.canvas.setBackgroundImage(
-          img,
-          state.canvas.renderAll.bind(state.canvas)
-        );
-      }
-    );
+    setState((prevState) => ({
+      ...prevState,
+      isDialogOpen: true,
+    }));
+  };
+
+  const onClose = () => {
+    setState((prevState) => ({
+      ...prevState,
+      isDialogOpen: false,
+    }));
+  };
+
+  const fetchImage = async () => {
+    let data = await services.getImage("rooms");
+    setState((prevState) => ({
+      ...prevState,
+      image: data || [],
+    }));
   };
 
   const handleSendToBack = () => {
@@ -554,12 +545,23 @@ const Home = () => {
   const handleEraser = (target) => {
     // if (typeof target === "string") target = document.getElementById(target);
     // if (target.id === "erase") {
-    //   state.canvas.isDrawingMode = true;
+    //   state.canvas.isDialogOpen = true;
     //   state.canvas.freeDrawingBrush = eraser(state.canvas);
     //   state.canvas.freeDrawingBrush.color = "white";
     //   state.canvas.freeDrawingBrush.width = 15;
     // }
   };
+
+  const handleAnimate = () => {
+    setState((prevState) => ({
+      ...prevState,
+      isAnimate: true,
+    }));
+  };
+
+  useEffect(() => {
+    fetchImage();
+  }, []);
 
   return (
     <>
@@ -618,6 +620,11 @@ const Home = () => {
         isCopyObj={state.isCopyObj}
         handleGroupSelectedCanvas={handleGroupSelectedCanvas}
         handleEraser={handleEraser}
+        handleAnimate={handleAnimate}
+        isAnimate={state.isAnimate}
+        isDialogOpen={state.isDialogOpen}
+        onClose={onClose}
+        image={state.image}
       />
     </>
   );

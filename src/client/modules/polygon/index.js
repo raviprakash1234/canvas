@@ -53,6 +53,7 @@ const Polygon = ({
             { x: 100, y: 150 },
             { x: 40, y: 100 },
           ]}
+          isAnimate={false}
         />
       </div>
     </>

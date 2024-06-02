@@ -51,6 +51,7 @@ const Ellipse = ({
           }}
           activeObject={activeObject}
           handleGroupCanvas={handleGroupCanvas}
+          isAnimate={false}
         />
       </div>
     </>

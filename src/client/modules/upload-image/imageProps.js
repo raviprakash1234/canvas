@@ -15,6 +15,7 @@ const ImageProps = ({
           value={imageProps.absolutePositioned}
           name="absolutePositioned"
           onChange={(evt) => handleChange(evt, "imageProps", "checkbox")}
+          checked={imageProps.absolutePositioned}
         />
         <label>Absolute Positioned</label>
       </div>
@@ -25,6 +26,7 @@ const ImageProps = ({
           value={imageProps.dirty}
           name="dirty"
           onChange={(evt) => handleChange(evt, "imageProps", "checkbox")}
+          checked={imageProps.dirty}
         />
         <label>Dirty</label>
       </div>

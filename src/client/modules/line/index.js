@@ -8,10 +8,9 @@ const Line = ({
   lineProps = {},
 }) => {
   const applyStyle = (objectProps) => {
+    console.log("objectProps", objectProps);
     if (objectProps) {
       const styles = {
-        selectable: objectProps.selectable,
-        affectStroke: objectProps.affectStroke,
         fill: objectProps.fill,
         borderColor: objectProps.borderColor,
         strokeColor: objectProps.strokeColor,
@@ -44,6 +43,7 @@ const Line = ({
           activeObject={activeObject}
           handleGroupCanvas={handleGroupCanvas}
           firstArgument={[50, 50, 250, 400]}
+          isAnimate={false}
         />
       </div>
     </>

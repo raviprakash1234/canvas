@@ -17,6 +17,7 @@ const Canvas = ({
   imageUrl = "",
   objectType = "",
   isButtonVisible = true,
+  isAnimate = false,
   props = {},
   canvas = null,
   firstArgument = null,
@@ -47,18 +48,23 @@ const Canvas = ({
   };
 
   const onAddShadows = () => {
-    addSVGFromURL("/assets/eg.svg", canvas, (obj) => {
-      obj.on("mousedown", () => {
-        activeObject(obj);
-      });
-      canvas.add(obj);
-      handleGroupCanvas(obj);
-      setState((prevState) => ({
-        ...prevState,
-        object: [...prevState.object, obj],
-        isActiveObject: obj,
-      }));
-    });
+    addSVGFromURL(
+      "/assets/eg.svg",
+      canvas,
+      (obj) => {
+        obj.on("mousedown", () => {
+          activeObject(obj);
+        });
+        canvas.add(obj);
+        handleGroupCanvas(obj);
+        setState((prevState) => ({
+          ...prevState,
+          object: [...prevState.object, obj],
+          isActiveObject: obj,
+        }));
+      },
+      isAnimate
+    );
 
     return () => {
       canvas.dispose();

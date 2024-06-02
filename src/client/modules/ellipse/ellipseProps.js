@@ -14,6 +14,7 @@ const EllipseProps = ({
           type="checkbox"
           name="selectable"
           onChange={(evt) => handleChange(evt, "ellipseProps", "checkbox")}
+          checked={ellipseProps.selectable}
         />
         <label>Selectable</label>
       </div>
@@ -24,6 +25,7 @@ const EllipseProps = ({
           type="checkbox"
           name="lockRotation"
           onChange={(evt) => handleChange(evt, "ellipseProps", "checkbox")}
+          checked={ellipseProps.lockRotation}
         />
         <label>Lock Rotation</label>
       </div>
@@ -34,6 +36,7 @@ const EllipseProps = ({
           name="flipX"
           type="checkbox"
           onChange={(evt) => handleChange(evt, "ellipseProps", "checkbox")}
+          checked={ellipseProps.lockRotation}
         />
         <label>FlipX</label>
       </div>
@@ -44,6 +47,7 @@ const EllipseProps = ({
           name="flipY"
           type="checkbox"
           onChange={(evt) => handleChange(evt, "ellipseProps", "checkbox")}
+          checked={ellipseProps.flipY}
         />
         <label>FlipY</label>
       </div>
@@ -55,6 +59,7 @@ const EllipseProps = ({
           value={ellipseProps.affectStroke}
           name="affectStroke"
           onChange={(evt) => handleChange(evt, "ellipseProps", "checkbox")}
+          checked={ellipseProps.affectStroke}
         />
         <label>Affect Stroke</label>
       </div>
@@ -65,6 +70,7 @@ const EllipseProps = ({
           value={ellipseProps.absolutePositioned}
           name="absolutePositioned"
           onChange={(evt) => handleChange(evt, "ellipseProps", "checkbox")}
+          checked={ellipseProps.absolutePositioned}
         />
         <label>Absolute Positioned</label>
       </div>
@@ -75,6 +81,7 @@ const EllipseProps = ({
           value={ellipseProps.dirty}
           name="dirty"
           onChange={(evt) => handleChange(evt, "ellipseProps", "checkbox")}
+          checked={ellipseProps.dirty}
         />
         <label>Dirty</label>
       </div>

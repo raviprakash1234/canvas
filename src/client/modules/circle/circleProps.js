@@ -14,6 +14,7 @@ const CircleProp = ({
           type="checkbox"
           name="lockRotation"
           onChange={(evt) => handleChange(evt, "circleProps", "checkbox")}
+          checked={circleProps.lockRotation}
         />
         <label>Lock Rotation</label>
       </div>
@@ -24,6 +25,7 @@ const CircleProp = ({
           type="checkbox"
           name="lockMovementX"
           onChange={(evt) => handleChange(evt, "circleProps", "checkbox")}
+          checked={circleProps.lockMovementX}
         />
         <label>Lock Movement X</label>
       </div>
@@ -34,6 +36,7 @@ const CircleProp = ({
           type="checkbox"
           name="lockMovementY"
           onChange={(evt) => handleChange(evt, "circleProps", "checkbox")}
+          checked={circleProps.lockMovementY}
         />
         <label>Lock Movement Y</label>
       </div>

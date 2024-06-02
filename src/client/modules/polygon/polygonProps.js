@@ -14,6 +14,7 @@ const PolygonProps = ({
           type="checkbox"
           name="selectable"
           onChange={(evt) => handleChange(evt, "polygonProps", "checkbox")}
+          checked={polygonProps.selectable}
         />
         <label>Selectable</label>
       </div>
@@ -24,6 +25,7 @@ const PolygonProps = ({
           type="checkbox"
           name="lockRotation"
           onChange={(evt) => handleChange(evt, "polygonProps", "checkbox")}
+          checked={polygonProps.lockRotation}
         />
         <label>Lock Rotation</label>
       </div>

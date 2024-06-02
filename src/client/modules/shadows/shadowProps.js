@@ -3,6 +3,7 @@ const ShadowProps = ({
   handleChange = () => {},
   zoomIn = () => {},
   ZoomOut = () => {},
+  handleAnimate = () => {},
 }) => {
   return (
     <>
@@ -14,6 +15,7 @@ const ShadowProps = ({
           type="checkbox"
           name="selectable"
           onChange={(evt) => handleChange(evt, "shadowProps", "checkbox")}
+          checked={shadowProps.selectable}
         />
         <label>Selectable</label>
       </div>
@@ -24,6 +26,7 @@ const ShadowProps = ({
           type="checkbox"
           name="lockRotation"
           onChange={(evt) => handleChange(evt, "shadowProps", "checkbox")}
+          checked={shadowProps.lockRotation}
         />
         <label>Lock Rotation</label>
       </div>
@@ -67,6 +70,9 @@ const ShadowProps = ({
         />
         <label>Blur</label>
       </div>
+      {/* <div style={{ marginTop: "12px" }}>
+        <button onClick={handleAnimate}>Click To animate</button>
+      </div> */}
       <div
         style={{
           display: "flex",

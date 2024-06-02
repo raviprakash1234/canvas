@@ -151,6 +151,7 @@ const UploadImage = ({
         imageUrl={state.imageUrl}
         handleGroupCanvas={handleGroupCanvas}
         activeObject={activeObject}
+        isAnimate={false}
       />
     </>
   );

@@ -10,6 +10,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
             name="underline"
             onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
             type="checkbox"
+            checked={textProps.underline}
           />
           <label>Underlined</label>
         </div>
@@ -20,6 +21,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
             name="overline"
             onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
             type="checkbox"
+            checked={textProps.overline}
           />
           <label>Overline</label>
         </div>
@@ -30,6 +32,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
             name="bold"
             onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
             type="checkbox"
+            checked={textProps.bold}
           />
           <label>Bold</label>
         </div>
@@ -40,6 +43,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
             name="linethrough"
             onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
             type="checkbox"
+            checked={textProps.linethrough}
           />
           <label>Line through</label>
         </div>
@@ -51,6 +55,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
           type="checkbox"
           name="selectable"
           onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
+          checked={textProps.selectable}
         />
         <label>Selectable</label>
       </div>
@@ -61,6 +66,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
           type="checkbox"
           name="lockRotation"
           onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
+          checked={textProps.lockRotation}
         />
         <label>Lock Rotation</label>
       </div>
@@ -71,6 +77,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
           value={textProps.lockMovementX}
           name="lockMovementX"
           onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
+          checked={textProps.lockMovementX}
         />
         <label>Lock Movement X</label>
       </div>
@@ -81,6 +88,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
           value={textProps.lockMovementY}
           name="lockMovementY"
           onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
+          checked={textProps.lockMovementY}
         />
         <label>Lock Movement Y</label>
       </div>
@@ -91,6 +99,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
           name="flipX"
           type="checkbox"
           onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
+          checked={textProps.flipX}
         />
         <label>FlipX</label>
       </div>
@@ -101,6 +110,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
           name="flipY"
           type="checkbox"
           onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
+          checked={textProps.flipY}
         />
         <label>FlipY</label>
       </div>
@@ -112,6 +122,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
           value={textProps.affectStroke}
           name="affectStroke"
           onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
+          checked={textProps.affectStroke}
         />
         <label>Affect Stroke</label>
       </div>
@@ -122,6 +133,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
           value={textProps.absolutePositioned}
           name="absolutePositioned"
           onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
+          checked={textProps.absolutePositioned}
         />
         <label>Absolute Positioned</label>
       </div>
@@ -132,6 +144,7 @@ const TextProps = ({ textProps = {}, handleChange = () => {} }) => {
           value={textProps.dirty}
           name="dirty"
           onChange={(evt) => handleChange(evt, "textProps", "checkbox")}
+          checked={textProps.dirty}
         />
         <label>Dirty</label>
       </div>

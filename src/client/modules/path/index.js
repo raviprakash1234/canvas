@@ -118,6 +118,7 @@ const SvgPath = ({
           handleGroupCanvas={handleGroupCanvas}
           svgData={state.svgData}
           activeObject={activeObject}
+          isAnimate={false}
         />
       </div>
     </>

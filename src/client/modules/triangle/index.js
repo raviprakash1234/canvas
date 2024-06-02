@@ -44,6 +44,7 @@ const Triangle = ({
           }}
           activeObject={activeObject}
           handleGroupCanvas={handleGroupCanvas}
+          isAnimate={false}
         />
       </div>
     </>

@@ -20,6 +20,9 @@ import EllipseProps from "../ellipse/ellipseProps";
 import CircleProp from "../circle/circleProps";
 import TriangleProps from "../triangle/triangleProps";
 import ImageProps from "../upload-image/imageProps";
+import CanvasBackgroundImage from "../shared/components/canvas-background-image";
+import Dialog from "../shared/components/dialog";
+import SolarSystem from "../solar-system";
 
 let tabList = [
   { name: "Basic Design", id: "1" },
@@ -29,6 +32,7 @@ let tabList = [
 ];
 
 const HomeView = ({
+  image = [],
   currentTab = "1",
   canvasBackgroundColor = "",
   loadSvg = "",
@@ -37,6 +41,8 @@ const HomeView = ({
   canvas = null,
   isDrawingMode = false,
   isCopyObj = false,
+  isAnimate = false,
+  isDialogOpen = false,
   group = [],
   canvasHistory = [],
   canvasDrawing = {},
@@ -59,6 +65,7 @@ const HomeView = ({
   handleDownloadCanvas = () => {},
   handleRemoveSelectedObject = () => {},
   handleDrawingMode = () => {},
+  handleExitDrawingMode = () => {},
   handelDrawingChange = () => {},
   handleCanvasChange = () => {},
   handleBringToFront = () => {},
@@ -80,6 +87,8 @@ const HomeView = ({
   handlePasteObject = () => {},
   handleGroupSelectedCanvas = () => {},
   handleEraser = () => {},
+  handleAnimate = () => {},
+  onClose = () => {},
 }) => {
   const renderCurrentTab = (tab = "") => {
     let content = <></>;
@@ -93,6 +102,7 @@ const HomeView = ({
                 alignItems: "center",
                 gap: "12px",
                 height: "50px",
+                marginBottom: "64px",
               }}
             >
               <TextBox
@@ -137,6 +147,7 @@ const HomeView = ({
                 handleGroupCanvas={handleGroupCanvas}
                 activeObject={activeObject}
                 shadowProps={shadowProps}
+                isAnimate={isAnimate}
               />
               <Polygon
                 canvas={canvas}
@@ -148,8 +159,9 @@ const HomeView = ({
                 canvas={canvas}
                 activeObject={activeObject}
                 textProps={textProps}
-                // handleGroupCanvas={handleGroupCanvas}
+                handleGroupCanvas={handleGroupCanvas}
               />
+              <SolarSystem canvas={canvas} />
             </div>
           </>
         );
@@ -163,7 +175,8 @@ const HomeView = ({
                 gap: "15px",
                 alignItems: "center",
                 height: "50px",
-                marginTop: "48px",
+                marginTop: "50px",
+                marginBottom: "64px",
               }}
             >
               <div style={{ marginLeft: "12px" }}>
@@ -199,7 +212,11 @@ const HomeView = ({
                     paddingRight: "12px",
                     fontWeight: "bold",
                   }}
-                  onClick={() => handleDrawingMode()}
+                  onClick={() =>
+                    !isDrawingMode
+                      ? handleDrawingMode(true)
+                      : handleExitDrawingMode(false)
+                  }
                 >
                   {isDrawingMode ? "Exit" : "Enter in"} Drawing mode
                 </button>
@@ -403,7 +420,13 @@ const HomeView = ({
       case "3":
         content = (
           <>
-            <div style={{ marginLeft: "12px", height: "50px" }}>
+            <div
+              style={{
+                marginLeft: "12px",
+                height: "50px",
+                marginBottom: "64px",
+              }}
+            >
               <SvgPath
                 canvas={canvas}
                 handleGroupCanvas={handleGroupCanvas}
@@ -421,7 +444,7 @@ const HomeView = ({
               style={{
                 marginLeft: "12px",
                 height: "50px",
-                marginBottom: "12px",
+                marginBottom: "64px",
               }}
             >
               <div>
@@ -532,7 +555,7 @@ const HomeView = ({
             height: "100px",
             backgroundColor: "pink",
             marginLeft: "850px",
-            marginTop: "-4px",
+            marginTop: "-52px",
           }}
         >
           <label>Mode:</label>
@@ -625,6 +648,7 @@ const HomeView = ({
                 shadowProps={shadowProps}
                 zoomIn={zoomIn}
                 ZoomOut={ZoomOut}
+                handleAnimate={handleAnimate}
               />
             )}
             {isActiveObject?.type === "rect" && (
@@ -721,6 +745,14 @@ const HomeView = ({
           </div>
         </div>
       </div>
+      <Dialog isOpen={isDialogOpen} onClose={onClose} title="Image Gallery">
+        <CanvasBackgroundImage
+          isDialogOpen={isDialogOpen}
+          data={image}
+          canvas={canvas}
+          onClose={onClose}
+        />
+      </Dialog>
     </>
   );
 };

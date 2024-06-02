@@ -3,6 +3,7 @@ import Canvas from "../shared/components/canvas";
 
 const Shadows = ({
   canvas = null,
+  isAnimate = false,
   handleGroupCanvas = () => {},
   activeObject = () => {},
   shadowProps = {},
@@ -29,6 +30,7 @@ const Shadows = ({
   useEffect(() => {
     applyStyle(shadowProps);
   }, [shadowProps]);
+  
   return (
     <>
       <div>
@@ -37,6 +39,7 @@ const Shadows = ({
           objectType="loadSVGFromURL"
           activeObject={activeObject}
           handleGroupCanvas={handleGroupCanvas}
+          isAnimate={isAnimate}
         />
       </div>
     </>

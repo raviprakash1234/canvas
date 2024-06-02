@@ -22,6 +22,7 @@ const TextBox = ({
         borderColor: objectProps.borderColor,
         charSpacing: objectProps.charSpacing,
         textAlign: objectProps.textAlign,
+        fontStyle: objectProps.italic ? "italic" : "normal",
       };
       const activeObject = canvas?.getActiveObject();
       if (activeObject) {
@@ -51,6 +52,7 @@ const TextBox = ({
           activeObject={activeObject}
           handleGroupCanvas={handleGroupCanvas}
           firstArgument="Add your Text..."
+          isAnimate={false}
         />
       </div>
     </>

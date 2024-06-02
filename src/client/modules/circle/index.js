@@ -44,6 +44,7 @@ const Circle = ({
           }}
           activeObject={activeObject}
           handleGroupCanvas={handleGroupCanvas}
+          isAnimate={false}
         />
       </div>
     </>
